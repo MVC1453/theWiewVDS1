@@ -23,9 +23,9 @@ jobs:
         NGROK_AUTH_TOKEN: 1vUSIvCyrUaLZlKwhfR4hsNppEP_82xYtKPaoynwon9pD15VV
     - name: Önemli Dosyalar İndiriliyor
       run: |
-        Invoke-WebRequest https://raw.githubusercontent.com/get-gg/vdsvds/main/Files/NGROK-US.bat -OutFile NGROK-US.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/get-gg/vdsvds/main/Files/NGROK-CHECK.bat -OutFile NGROK-CHECK.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/get-gg/vdsvds/main/Files/loop.bat -OutFile loop.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/MVC1453/theWiewVDS1/main/Files/NGROK-US.bat -OutFile NGROK-US.bat
+        Invoke-WebRequest https://github.com/MVC1453/theWiewVDS1/raw/main/Files/NGROK-CHECK.bat -OutFile NGROK-CHECK.bat
+        Invoke-WebRequest https://github.com/MVC1453/theWiewVDS1/raw/main/Files/loop.bat -OutFile loop.bat
     - name:  Ngrok İçin YML Dosyası Oluşturuluyor
       run: start NGROK-US.bat
     - name: RDP Erişimi Aktif Ediliyor
