@@ -1,1 +1,1 @@
-MVC
+GitHub VDS baseini ihtiyaç doğrultusunda uzaktan masaüstü erişimine açmaya yarayan scripttir. Orijinalinin üzerinde bug temizleme ve sistem uyumluluğunu arttırmaya yönelik değişiklikler yapılmıştır. Bu repostory üzerinde yapıldığı için dış kaynak kullanımına yetkin değildir. 
