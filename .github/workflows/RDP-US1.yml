@@ -35,6 +35,9 @@ jobs:
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
     - name: Tünel Oluşturuluyor
       run: sc start ngrok
+    - name: OBS Studio İndiriliyor
+      run: |
+        Invoke-WebRequest https://cdn-fastly.obsproject.com/downloads/OBS-Studio-29.1.2-Full-Installer-x64.exe -OutFile OBS-Studio.exe
     - name: VDS'nize Bağlanın !
       run: cmd /c NGROK-CHECK.bat
     - name: Herşey Tamamlandı! Sekmeyi Kapatabilirsin! 
