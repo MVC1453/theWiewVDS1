@@ -1,0 +1,41 @@
+name: by MVC
+
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+
+    steps:
+    - name: Ngrok & NSSM İndiriliyor
+      run: |
+        Invoke-WebRequest https://raw.githubusercontent.com/TheDarkMythos/Ngrok-Exe/master/ngrok.exe -OutFile ngrok.exe
+        Invoke-WebRequest https://github.com/MVC1453/theWiewVDS1/raw/main/Files/nssm.exe -OutFile nssm.exe
+    - name: NSSM ve Ngrok Windows Dizinine Kopyalanıyor
+      run: | 
+        copy nssm.exe C:\Windows\System32
+        copy ngrok.exe C:\Windows\System32
+    - name: Ngrok Hesabınıza Bağlanılıyor
+      run: .\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+        NGROK_AUTH_TOKEN: 1va7V7r5wJz6LqnjeSwBYR0tP4q_2ymQcBhcW6Q5pJXBecDMa
+    - name: Önemli Dosyalar İndiriliyor
+      run: |
+        Invoke-WebRequest https://raw.githubusercontent.com/MVC1453/theWiewVDS1/main/Files/NGROK-US.bat -OutFile NGROK-US.bat
+        Invoke-WebRequest https://github.com/MVC1453/theWiewVDS1/raw/main/Files/NGROK-CHECK.bat -OutFile NGROK-CHECK.bat
+        Invoke-WebRequest https://github.com/MVC1453/theWiewVDS1/raw/main/Files/loop.bat -OutFile loop.bat
+    - name:  Ngrok İçin YML Dosyası Oluşturuluyor
+      run: start NGROK-US.bat
+    - name: RDP Erişimi Aktif Ediliyor
+      run: | 
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
+    - name: Tünel Oluşturuluyor
+      run: sc start ngrok
+    - name: VDS'nize Bağlanın !
+      run: cmd /c NGROK-CHECK.bat
+    - name: Herşey Tamamlandı! Sekmeyi Kapatabilirsin! 
+      run: cmd /c loop.bat 
